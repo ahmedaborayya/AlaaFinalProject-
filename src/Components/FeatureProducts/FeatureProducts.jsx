@@ -1,0 +1,89 @@
+import React, { useContext } from 'react';
+import { BallTriangle } from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { CartContent } from '../../Context/cartContent';
+import toast from 'react-hot-toast';
+import API from '../../api/api';
+import styles from '../Products/Products.module.css';
+import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
+
+function FeatureProducts({ selectedCategoryId = null, setSelectedCategoryId }) {
+  let { addToCart } = useContext(CartContent);
+
+  function getProducts() {
+    return API.get("/products");
+  }
+
+  let { isLoading, data } = useQuery({
+    queryKey: ['featuredProducts'],
+    queryFn: getProducts
+  });
+
+  async function addCart(e, product) {
+    e.preventDefault(); // Prevent link click when clicking button
+    addToCart(product);
+    toast.success(`${product.name} added to cart`);
+  }
+
+  // Filter products if a category is selected
+  const displayedProducts = data?.data?.filter((product) => {
+    if (selectedCategoryId === null) return true;
+    return product.categoryId === selectedCategoryId;
+  });
+
+  return (
+    <div className="container py-5">
+      <h2 className={styles.sectionTitle}>Featured Products</h2>
+      
+      <div className="mb-5">
+        <CategoriesSlider 
+          selectedCategoryId={selectedCategoryId} 
+          setSelectedCategoryId={setSelectedCategoryId} 
+        />
+      </div>
+      
+      {isLoading ? (
+        <div className="py-5 text-center d-flex justify-content-center">
+          <BallTriangle height={80} width={80} radius={5} color="var(--primary)" ariaLabel="loading" visible={true} />
+        </div>
+      ) : (
+        <div className="row g-4 justify-content-center">
+          {displayedProducts?.length > 0 ? (
+            displayedProducts.map((ele) => (
+              <div key={ele.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                <Link to={`/details/${ele.id}`} className="text-decoration-none">
+                  <div className={styles.productCard}>
+                    <div className={styles.imageWrap}>
+                      <img src={ele.imageUrl || 'https://via.placeholder.com/200'} className={styles.productImage} alt={ele.name} />
+                      {ele.category?.name && (
+                        <span className={styles.categoryPill}>{ele.category.name}</span>
+                      )}
+                    </div>
+                    
+                    <h3 className={styles.productTitle}>{ele.name}</h3>
+                    <div className={styles.productPrice}>{Number(ele.price).toFixed(2)} EGP</div>
+                    
+                    <button onClick={(e) => addCart(e, ele)} className={styles.btnAdd}>
+                      <i className="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                  </div>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <div className="col-12 text-center py-5">
+              <div style={{ background: 'var(--surface)', padding: 40, borderRadius: 'var(--radius-lg)' }}>
+                <i className="fa-solid fa-box-open mb-3" style={{ fontSize: 60, color: 'var(--border)' }}></i>
+                <h3>No Products Found</h3>
+                <p className="text-muted">There are no products available in this category yet.</p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default FeatureProducts;

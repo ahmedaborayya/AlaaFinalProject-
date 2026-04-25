@@ -1,0 +1,242 @@
+.cartContainer {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.cartTitle {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.itemCount {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.cartRow {
+  display: flex;
+  gap: 30px;
+}
+
+.cartItemsList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cartItem {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  animation: slideIn 0.3s ease both;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.cartItem:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.itemImageWrap {
+  width: 100px;
+  height: 100px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.itemImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface-alt);
+  padding: 6px;
+  border-radius: 30px;
+}
+
+.btnQty {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--surface);
+  color: var(--text-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.btnQty:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.itemTotal {
+  font-weight: 700;
+  min-width: 30px;
+  text-align: center;
+}
+
+.btnRemove {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.btnRemove:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Order Summary */
+.summaryCard {
+  width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  position: sticky;
+  top: 100px;
+  flex-shrink: 0;
+}
+
+.summaryTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--primary-glass, rgba(79,70,229,0.06));
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.btnCheckout {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-lg);
+}
+
+/* Trust badges */
+.trustRow {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: center;
+}
+
+.trustItem i {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+@media (max-width: 992px) {
+  .cartRow {
+    flex-direction: column;
+  }
+  .summaryCard {
+    width: 100%;
+    position: static;
+  }
+}

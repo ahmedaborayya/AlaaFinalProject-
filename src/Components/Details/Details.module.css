@@ -1,0 +1,132 @@
+.detailsWrap {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  border: 1px solid var(--border-light);
+}
+
+.imageSection {
+  background: var(--surface-alt);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.mainImage {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+  border-radius: var(--radius-md);
+}
+
+.infoSection {
+  padding: 50px 40px;
+}
+
+.categoryLabel {
+  display: inline-block;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.priceWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.metaWrap {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.metaIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.metaText {
+  display: flex;
+  flex-direction: column;
+}
+
+.metaLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.metaValue {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.actionArea {
+  display: flex;
+  gap: 16px;
+}
+
+.btnLarge {
+  flex: 1;
+  padding: 16px 24px;
+  font-size: 18px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}

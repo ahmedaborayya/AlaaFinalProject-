@@ -1,0 +1,59 @@
+{
+  "name": "finalproject",
+  "version": "0.1.0",
+  "private": true,
+    "homepage": "http://Abdullllla.github.io/finalProject",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@tanstack/react-query": "^5.95.2",
+    "@tanstack/react-query-devtools": "^5.95.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.13.6",
+    "bootstrap": "^5.3.8",
+    "formik": "^2.4.9",
+    "generate-react-cli": "^11.0.3",
+    "github-pages": "^3.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.6.0",
+    "react-loader-spinner": "^8.0.2",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^7.13.2",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.31.0",
+    "react-spinners": "^0.17.0",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.7.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
