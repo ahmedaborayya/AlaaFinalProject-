@@ -115,7 +115,7 @@ Before you start, make sure you have the following installed on your computer:
 ### Step 1 – Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/finalProject-main.git
+git clone https://github.com/ahmedaborayya/AlaaFinalProject-
 cd finalProject-main
 ```
 
