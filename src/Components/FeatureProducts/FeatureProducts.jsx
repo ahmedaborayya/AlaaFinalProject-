@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { CartContent } from '../../Context/cartContent';
 import toast from 'react-hot-toast';
-import API from '../../api/api';
+import API, { getImageUrl } from '../../api/api';
 import styles from '../Products/Products.module.css';
 import CategoriesSlider from '../CategoriesSlider/CategoriesSlider';
 
@@ -21,7 +21,7 @@ function FeatureProducts({ selectedCategoryId = null, setSelectedCategoryId }) {
   });
 
   async function addCart(e, product) {
-    e.preventDefault(); // Prevent link click when clicking button
+    e.preventDefault();
     addToCart(product);
     toast.success(`${product.name} added to cart`);
   }
@@ -32,17 +32,25 @@ function FeatureProducts({ selectedCategoryId = null, setSelectedCategoryId }) {
     return product.categoryId === selectedCategoryId;
   });
 
+  /** Get the primary image for a product (from images[] array or fallback to imageUrl) */
+  function getPrimaryImage(product) {
+    if (product.images && product.images.length > 0) {
+      return getImageUrl(product.images[0].imageUrl) || 'https://placehold.co/200x200?text=No+Image';
+    }
+    return getImageUrl(product.imageUrl) || 'https://placehold.co/200x200?text=No+Image';
+  }
+
   return (
     <div className="container py-5">
       <h2 className={styles.sectionTitle}>Featured Products</h2>
-      
+
       <div className="mb-5">
-        <CategoriesSlider 
-          selectedCategoryId={selectedCategoryId} 
-          setSelectedCategoryId={setSelectedCategoryId} 
+        <CategoriesSlider
+          selectedCategoryId={selectedCategoryId}
+          setSelectedCategoryId={setSelectedCategoryId}
         />
       </div>
-      
+
       {isLoading ? (
         <div className="py-5 text-center d-flex justify-content-center">
           <BallTriangle height={80} width={80} radius={5} color="var(--primary)" ariaLabel="loading" visible={true} />
@@ -55,15 +63,41 @@ function FeatureProducts({ selectedCategoryId = null, setSelectedCategoryId }) {
                 <Link to={`/details/${ele.id}`} className="text-decoration-none">
                   <div className={styles.productCard}>
                     <div className={styles.imageWrap}>
-                      <img src={ele.imageUrl || 'https://via.placeholder.com/200'} className={styles.productImage} alt={ele.name} />
+                      <img
+                        src={getPrimaryImage(ele)}
+                        className={styles.productImage}
+                        alt={ele.name}
+                        onError={e => { e.target.src = 'https://placehold.co/200x200?text=No+Image'; }}
+                      />
                       {ele.category?.name && (
                         <span className={styles.categoryPill}>{ele.category.name}</span>
                       )}
+                      {ele.images?.length > 1 && (
+                        <span className={styles.imageCountBadge}>
+                          <i className="fa-solid fa-images"></i> {ele.images.length}
+                        </span>
+                      )}
                     </div>
-                    
+
+                    {/* Brand badge */}
+                    {ele.brand && (
+                      <div className={styles.brandBadge}>
+                        {ele.brand.logoUrl ? (
+                          <img
+                            src={getImageUrl(ele.brand.logoUrl)}
+                            alt={ele.brand.name}
+                            className={styles.brandLogo}
+                            onError={e => { e.target.style.display = 'none'; }}
+                          />
+                        ) : (
+                          <span className={styles.brandName}>{ele.brand.name}</span>
+                        )}
+                      </div>
+                    )}
+
                     <h3 className={styles.productTitle}>{ele.name}</h3>
-                    <div className={styles.productPrice}>{Number(ele.price).toFixed(2)} EGP</div>
-                    
+                    <div className={styles.productPrice}>{Number(ele.price).toLocaleString()} EGP</div>
+
                     <button onClick={(e) => addCart(e, ele)} className={styles.btnAdd}>
                       <i className="fa-solid fa-cart-plus"></i> Add to Cart
                     </button>

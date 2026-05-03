@@ -1,9 +1,9 @@
 import express from 'express';
-import { 
-  createProduct, updateProduct, deleteProduct, 
-  getAllOrders, updateOrderStatus, 
-  createCategory, 
-  getAllUsers 
+import {
+  createProduct, updateProduct, deleteProduct,
+  getAllOrders, updateOrderStatus,
+  createCategory, updateCategory, deleteCategory,
+  getAllUsers,
 } from '../controllers/adminController.js';
 import { verifyToken, isAdmin } from '../middlewares/authMiddleware.js';
 
@@ -23,6 +23,8 @@ router.put('/orders/:id', updateOrderStatus);
 
 // Categories
 router.post('/categories', createCategory);
+router.put('/categories/:id', updateCategory);
+router.delete('/categories/:id', deleteCategory);
 
 // Users
 router.get('/users', getAllUsers);
